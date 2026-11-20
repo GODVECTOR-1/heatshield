@@ -72,7 +72,7 @@ The store holds only a pseudonymous derived risk level. It keeps no health data 
 
 ## Gemini (optional, text only)
 **As built (20 Nov):** `GET /api/plan-summary?mode=on|off`. The browser sends only the planner mode. The server builds the anonymous facts itself with `planFacts(mode)` in `lib/demo/summary.ts` (task names, work class, sun or shade, times, the ban and unscheduled reasons), so no caller text ever reaches Gemini.
-- It calls the Gemini REST `generateContent` endpoint with `GEMINI_MODEL` and `GEMINI_API_KEY`, an 8 s timeout and temperature 0.2. The output is capped at 700 characters.
+- It calls the Gemini REST `generateContent` endpoint with `GEMINI_MODEL` and `GEMINI_API_KEY`, a 20 s timeout (`maxDuration` 30) and temperature 0.2. The output is capped at 700 characters. The limit was 8 s until 20 Nov, when Gemini was overloaded: Flash models took 10–15 s or more, and the page never waits on the answer anyway.
 - There is one cached answer per mode per server instance.
 - If the key is missing or anything fails, it returns `200 {text: null}`, and the box keeps the `planSummary(mode)` template.
 - The box sits under the heat timeline on `/demo` and `/supervisor`. Its caption says who wrote the text and that it never sets alert levels.

@@ -9,13 +9,16 @@ const SYSTEM = [
   'Do not give medical advice and do not mention alert levels. No lists, no markdown.',
 ].join(' ');
 
+// The page shows the template first and never waits, so a slow Gemini only delays the swap (20 s limit).
+export const maxDuration = 30;
+
 // ponytail: one cached answer per mode per server instance; the demo plan never changes between requests.
 const cache = new Map<string, Promise<string | null>>();
 
 async function ask(key: string, model: string, facts: string[]): Promise<string | null> {
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
     method: 'POST',
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(20_000),
     headers: { 'content-type': 'application/json', 'x-goog-api-key': key },
     body: JSON.stringify({
       systemInstruction: { parts: [{ text: SYSTEM }] },

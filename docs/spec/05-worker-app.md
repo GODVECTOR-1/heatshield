@@ -42,6 +42,7 @@ Component: `components/worker/WorkerCard.tsx` (the v0 visual-pass design, chosen
 6. **Activity row** (secondary): Rest-in-shade, Light, Moderate, Heavy.
 7. **"I FEEL UNWELL"**, at the bottom of the sheet and always visible. The sheet never shrinks; the level zone gives up space instead.
 8. **Menu:** Fasting mode toggle (confirm if changed mid-shift), language, confidence chips, "Offline ready", "Delete my data".
+   - **As built (20 Nov):** language is not in the menu but a visible button in the card's top corner, labelled with the other language's own name ("العربية" / "English"). On `/worker` the ☰ button is hidden because the menu has nothing else in it yet. On `/demo` it still opens the demo controls.
 
 `LEVEL_THEME` (exported from the card) gives the level hex values, so the caller can set `<meta name="theme-color">` and the status bar follows the level.
 

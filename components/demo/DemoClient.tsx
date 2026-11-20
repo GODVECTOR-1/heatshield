@@ -270,7 +270,8 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
       onMainAction={onMainAction} onActivity={tapActivity} onCall={onCall}
       onUnwell={() => apply(phone, { type: 'unwell', simTs: phone.state.lastSimTs })}
       onClearL4={() => apply(phone, { type: 'ok-buddy-checked', simTs: phone.state.lastSimTs })}
-      onOpenMenu={() => (layout === 'phone' ? setLang((v) => (v === 'en' ? 'ar' : 'en')) : setDrawer((d) => !d))}
+      onOpenMenu={layout === 'phone' ? undefined : () => setDrawer((d) => !d)}
+      language={{ label: lang === 'en' ? 'العربية' : 'English', lang: lang === 'en' ? 'ar' : 'en', onToggle: () => setLang((v) => (v === 'en' ? 'ar' : 'en')) }}
     />
   );
   const overlays = (over: ReactNode) => <>

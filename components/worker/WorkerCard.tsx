@@ -22,7 +22,10 @@ export interface WorkerCardProps {
   onActivity: (activity: Activity) => void;
   onUnwell: () => void;
   onClearL4: () => void;
-  onOpenMenu: () => void;
+  /** Omit to hide the menu button (the phone has no menu). */
+  onOpenMenu?: () => void;
+  /** A visible language switch in the top corner: `label` is the other language's own name, e.g. "العربية". */
+  language?: { label: string; lang: string; onToggle: () => void };
   /** Live readings line; null hides that reading. */
   readings: { wbgtC: number | null; heartRate: number | null };
 }
@@ -93,7 +96,7 @@ function BudgetGauge({ fraction, t, dir, compact }: { fraction: number; t: Worke
 }
 
 export default function WorkerCard(props: WorkerCardProps) {
-  const { card, t, dir, lang, simNow, clockLabel, lateJoinLabel, readings, onMainAction, onCall, onActivity, onUnwell, onClearL4, onOpenMenu } = props;
+  const { card, t, dir, lang, simNow, clockLabel, lateJoinLabel, readings, onMainAction, onCall, onActivity, onUnwell, onClearL4, onOpenMenu, language } = props;
   const callMain = card.mainAction === 'call' || (card.delivery.kind === 'queued' && card.level >= 3);
   const band = LEVELS[card.level];
   const selected = card.activity === 'veryHeavy' ? 'heavy' : card.activity;
@@ -109,7 +112,13 @@ export default function WorkerCard(props: WorkerCardProps) {
       </div>
       {/* The header takes whatever height the sheet leaves; the number scales to it (container units), so the sheet and the unwell button never clip. */}
       <header className={`relative flex min-h-0 flex-1 flex-col px-4 pb-3 pt-2 text-center ${card.level === 4 ? 'stripe-l4' : ''}`}>
-        <button type="button" aria-label={t('a11y.menu')} onClick={onOpenMenu} className="absolute start-1 top-1 z-10 flex min-h-tap min-w-tap items-center justify-center"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+        {onOpenMenu && <button type="button" aria-label={t('a11y.menu')} onClick={onOpenMenu} className="absolute start-1 top-1 z-10 flex min-h-tap min-w-tap items-center justify-center"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>}
+        {language && (
+          <button type="button" onClick={language.onToggle} aria-label={`${t('a11y.language')}: ${language.label}`} className="absolute end-2 top-2 z-10 flex min-h-11 items-center gap-1.5 rounded-ui border-2 border-current px-3 text-base font-semibold">
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9s1.3-6.3 3.8-9Z" /></svg>
+            <span lang={language.lang}>{language.label}</span>
+          </button>
+        )}
         <div aria-live="assertive" aria-atomic="true" className="relative flex min-h-0 flex-1 flex-col items-center">
           <div className="relative flex min-h-0 w-full flex-1 items-center justify-center gap-2 [container-type:size]">
             <span aria-hidden="true" className={`absolute inset-0 flex items-center justify-center opacity-15 [&>svg]:h-[min(240px,100cqh)] [&>svg]:w-auto ${card.level === 4 ? 'animate-l4-pulse' : ''}`}><LevelIcon level={card.level} size={240} /></span>

@@ -10,7 +10,7 @@
   "reason.hr-high": "heart rate high", "reason.after-unwell": "after unwell", "reason.dark-urine": "dark urine",
   "reason.watch-lost": "watch lost: playing safe", "reason.no-forecast": "no forecast: worst case", "reason.recovering": "recovering",
   "activity.rest": "Rest", "activity.light": "Light", "activity.moderate": "Moderate", "activity.heavy": "Heavy",
-  "a11y.menu": "Menu", "a11y.level": "Alert level", "a11y.delivery": "What your supervisor sees", "a11y.budget": "Heat budget", "a11y.activity": "What you are doing",
+  "a11y.menu": "Menu", "a11y.level": "Alert level", "a11y.delivery": "What your supervisor sees", "a11y.budget": "Heat budget", "a11y.language": "Change language", "a11y.activity": "What you are doing",
   "reading.wbgt": "WBGT {value}°", "reading.hr": "Heart rate {value}",
   "demo.wouldDial": "Demo: would dial {who}",
   "join.title": "Join your crew", "join.scan": "Point your phone camera at the QR code on your supervisor's screen.", "join.typeCode": "Or type the crew code", "join.go": "Join", "join.bad": "That code doesn't look right. It has 6 letters and numbers.", "join.demo": "No supervisor here? Watch the demo", "join.waiting": "You're in. Waiting for your supervisor to start the shift.", "join.codeIs": "Crew code {code}", "join.over": "Shift over at {time}"

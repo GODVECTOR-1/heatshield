@@ -28,7 +28,7 @@ const COPY = {
   home: 'HeatShield', sub: 'Demo · 15 Jul 2026 · real Abu Dhabi weather · 240×', crew: 'Crew A · Abu Dhabi',
   controls: 'Demo controls', restart: 'Restart', watch: 'Watch', battery: 'Low battery', auto: 'Auto-follow advice',
   planner: 'Planner', plannerOff: 'PLANNER OFF · comparison run', lang: 'Phone language', on: 'On', off: 'Off', drop: 'Drop',
-  over: 'Shift over at 18:00', phone: 'Worker phone (Ravi K., new arrival, day 1)', board: 'Supervisor board',
+  over: 'Shift over at', end: 'End shift', endConfirm: 'End the shift for the whole crew?', newShift: 'Start new shift', phone: 'Worker phone (Ravi K., new arrival, day 1)', board: 'Supervisor board',
   boardSub: 'Supervisor · 15 Jul 2026 replay · 240×', start: 'Start shift', crewCode: 'Crew code', qrAlt: 'Crew QR code. Tap to show or hide it large.',
   joinInternet: "Workers scan this with their phone camera. Ravi K.'s tile follows the phone that joins; the other five are simulated.",
   joinLocal: "Phones can't connect yet (no Supabase keys). To try it, open this link in another tab of this browser:",
@@ -85,6 +85,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
   const [showJoin, setShowJoin] = useState(false);
   const [linkKind, setLinkKind] = useState<LinkHandle['kind'] | null>(null);
   const wallStart = useRef(0);
+  const endSim = useRef<number | null>(null); // sim time the supervisor ended the shift early
   const runs = useRef<Run[]>([]);
   const acks = useRef<Record<string, { level: Level; wall: number }>>({});
   const remote = useRef<Record<string, Remote>>({});
@@ -100,6 +101,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
 
   const restart = (m: PlanMode, start = clock() + COUNTDOWN_MS) => {
     wallStart.current = start;
+    endSim.current = null;
     runs.current = startRuns(m, start, layout === 'phone');
     acks.current = {};
     remote.current = {};
@@ -108,7 +110,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
     setWatch(layout === 'phone' ? 'off' : 'on');
     setBattery(false);
     setNow(clock());
-    if (layout === 'board') void link.current?.send({ type: 'session', wallStart: start, boardNow: Date.now() });
+    if (layout === 'board') void link.current?.send({ type: 'session', wallStart: start, boardNow: Date.now(), endSim: null });
   };
 
   useEffect(() => {
@@ -131,7 +133,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
     const l = openLink(code, (m) => {
       if (layout === 'board') {
         if (m.type === 'hello' || m.type === 'status') phoneSeen.current = Date.now();
-        if (m.type === 'hello' && wallStart.current > 0) void l.send({ type: 'session', wallStart: wallStart.current, boardNow: Date.now() });
+        if (m.type === 'hello' && wallStart.current > 0) void l.send({ type: 'session', wallStart: wallStart.current, boardNow: Date.now(), endSim: endSim.current });
         if (m.type === 'status') {
           const w = Date.now();
           const prev = remote.current[m.workerId];
@@ -142,6 +144,8 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
         offset.current = m.boardNow - Date.now();
         if (!joinedAt.current) joinedAt.current = clock();
         if (m.wallStart !== wallStart.current) restart('on', m.wallStart);
+        endSim.current = m.endSim;
+        setNow(clock());
       }
     });
     link.current = l;
@@ -159,9 +163,10 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
   const timeline = useMemo(() => timelineFor(mode), [mode]);
   const wall = now ?? 0;
   const started = wallStart.current > 0;
-  const simAt = (w: number) => Math.min(SHIFT_END, Math.max(SHIFT_START, SHIFT_START + (w - wallStart.current) * MULTIPLIER));
+  const simAt = (w: number) => Math.min(SHIFT_END, endSim.current ?? SHIFT_END, Math.max(SHIFT_START, SHIFT_START + (w - wallStart.current) * MULTIPLIER));
   const simNow = started ? simAt(wall) : SHIFT_START;
   const simMinute = SHIFT_START + Math.floor((simNow - SHIFT_START) / MIN) * MIN;
+  const ended = started && (endSim.current !== null || simNow >= SHIFT_END);
 
   // Catch up every worker in 1 sim-minute steps (spec 04, Loop). Runs during render on purpose: it is
   // idempotent for a given simMinute, so a re-render without a new minute does nothing.
@@ -243,9 +248,17 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
   const levelSince = Object.fromEntries(states.map((s) => [s.id, s.levelSinceWall]));
   const view: BoardView = {
     sessionId: code ?? 'demo', scenario: 'replay-2026-07-15', multiplier: MULTIPLIER, offlineSince: null, sessionInvalid: false,
-    needsYou: running ? needsYou(tiles, levelSince) : [],
+    needsYou: running && !ended ? needsYou(tiles, levelSince) : [],
     grid: running ? tiles : CREW.map((c): BoardTileState => ({ kind: 'no-data', workerId: c.profile.workerId, displayName: c.displayName })),
   };
+  // The supervisor ends the shift early: the clock and every engine stop at this minute, and the phone follows.
+  const endShift = () => {
+    if (!window.confirm(COPY.endConfirm)) return;
+    endSim.current = simMinute;
+    void link.current?.send({ type: 'session', wallStart: wallStart.current, boardNow: Date.now(), endSim: simMinute });
+    setNow(clock());
+  };
+  const secondary = 'min-h-10 rounded-ui border-2 border-ink px-3 text-sm font-semibold';
   const onAck = (workerId: string, level: Level) => { acks.current[workerId] = { level, wall: clock() }; setNow(clock()); };
 
   const card = phone && (
@@ -264,7 +277,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
     {countdown !== null && (
       <div aria-live="polite" className="absolute inset-0 flex items-center justify-center bg-ink/80 text-[120px] font-semibold tabular-nums text-paper">{countdown}</div>
     )}
-    {simNow >= SHIFT_END && <div className="absolute inset-x-3 top-1/3 rounded-ui bg-ink p-4 text-center text-paper shadow-lift">{over}</div>}
+    {ended && <div className="absolute inset-x-3 top-1/3 rounded-ui bg-ink p-4 text-center text-paper shadow-lift">{over}</div>}
     {toast && toast.until > wall && (
       <div role="status" className="absolute inset-x-3 top-12 rounded-ui bg-ink px-4 py-3 text-center text-lg font-semibold text-paper shadow-lift">{toast.text}</div>
     )}
@@ -279,7 +292,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
             <p className="text-base text-muted">{t('join.codeIs', { code: code ?? '' })}</p>
           </main>
         )}
-        {overlays(<p className="text-xl font-semibold">{t('join.over')}</p>)}
+        {overlays(<p className="text-xl font-semibold">{t('join.over', { time: hhmm(simNow) })}</p>)}
       </div>
     );
   }
@@ -298,10 +311,13 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
   if (layout === 'board') {
     const seen = phoneSeen.current;
     const phoneLabel = !seen ? COPY.phoneNone : Date.now() - seen > STALE_MS ? COPY.phoneLost : COPY.phoneLive;
-    const startButton = <button type="button" onClick={() => { restart('on'); setShowJoin(false); }} className={primary}>{started ? COPY.restart : COPY.start}</button>;
+    const startButton = !started || ended
+      ? <button type="button" onClick={() => { restart('on'); setShowJoin(false); }} className={primary}>{started ? COPY.newShift : COPY.start}</button>
+      : <button type="button" onClick={endShift} disabled={countdown !== null} className={secondary}>{COPY.end}</button>;
     return (
       <div className="flex min-h-dvh flex-col bg-paper text-ink">
         {header(COPY.boardSub, <span role="status" className="text-sm font-semibold">{phoneLabel}</span>, startButton)}
+        {ended && <p role="status" className="shrink-0 bg-ink px-4 py-2 text-base font-semibold text-paper">{COPY.over} {hhmm(simNow)}</p>}
         {(!started || showJoin) && (
           <section aria-label={COPY.crewCode} className="flex shrink-0 flex-wrap items-center gap-6 border-b border-line px-4 py-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -342,6 +358,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
       {header(COPY.sub, mode === 'off' && <span className="bg-ink px-2 py-1 text-sm font-semibold text-paper">{COPY.plannerOff}</span>, <>
         <Link href="/start" className="flex min-h-10 items-center rounded-ui border-2 border-ink px-3 text-sm font-semibold">{COPY.realPhone}</Link>
         <button type="button" aria-expanded={drawer} onClick={() => setDrawer((d) => !d)} className="min-h-10 rounded-ui border-2 border-ink px-3 text-sm font-semibold">{COPY.controls}</button>
+        {running && !ended && <button type="button" onClick={endShift} className={secondary}>{COPY.end}</button>}
         <button type="button" onClick={() => restart(mode)} className={primary}>{COPY.restart}</button>
       </>)}
       {drawer && (
@@ -358,7 +375,7 @@ export default function DemoClient({ layout = 'demo', code: joinCode }: { layout
           <div className="relative h-[648px] w-[368px] overflow-hidden rounded-[28px] border-4 border-ink shadow-lift">
             {card}
             {overlays(<>
-              <p className="text-xl font-semibold">{COPY.over}</p>
+              <p className="text-xl font-semibold">{COPY.over} {hhmm(simNow)}</p>
               <button type="button" onClick={() => restart(mode)} className="mt-3 min-h-tap w-full rounded-ui bg-paper px-4 text-lg font-semibold text-ink">{COPY.restart}</button>
             </>)}
           </div>

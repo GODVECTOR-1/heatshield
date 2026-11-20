@@ -6,7 +6,7 @@ import type { Level } from '../types';
 
 export type LinkMsg =
   | { type: 'hello' }
-  | { type: 'session'; wallStart: number; boardNow: number }
+  | { type: 'session'; wallStart: number; boardNow: number; endSim: number | null }
   | { type: 'status'; workerId: string; level: Level; simTs: number; lowBattery: boolean };
 
 export interface Link {
@@ -32,7 +32,9 @@ export function parseMsg(raw: unknown): LinkMsg | null {
   if (typeof raw !== 'object' || raw === null) return null;
   const o = raw as Record<string, unknown>;
   if (o.type === 'hello') return { type: 'hello' };
-  if (o.type === 'session' && num(o.wallStart) && num(o.boardNow)) return { type: 'session', wallStart: o.wallStart, boardNow: o.boardNow };
+  if (o.type === 'session' && num(o.wallStart) && num(o.boardNow)) {
+    return { type: 'session', wallStart: o.wallStart, boardNow: o.boardNow, endSim: num(o.endSim) ? o.endSim : null };
+  }
   if (o.type === 'status' && typeof o.workerId === 'string' && IDS.has(o.workerId) && Number.isInteger(o.level)
     && (o.level as number) >= 0 && (o.level as number) <= 4 && num(o.simTs) && typeof o.lowBattery === 'boolean') {
     return { type: 'status', workerId: o.workerId, level: o.level as Level, simTs: o.simTs, lowBattery: o.lowBattery };

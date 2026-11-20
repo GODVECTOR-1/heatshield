@@ -8,10 +8,11 @@ The built join is a cut-down version of the flow below. There is no server route
 - **`/worker`** without a valid `#c=` shows the scan prompt, a typed-code box and a 998 button. With a code, it opens Ravi K.'s full-screen card (`layout="phone"`). The engine runs on the phone with no watch (Tier 0 + 1) and no auto-follow.
 - **Messages** (`lib/client/link.ts`):
   - **Phone to board:** `hello` every 5 s until the shift starts, then `status {workerId, level, simTs, lowBattery}` on every level change and every 5 s.
-  - **Board to phone:** `session {wallStart, boardNow}` on start, on restart and in reply to `hello`. The phone corrects its clock by `boardNow`.
+  - **Board to phone:** `session {wallStart, boardNow, endSim}` on start, on restart, on End shift and in reply to `hello`. The phone corrects its clock by `boardNow`. `endSim` is the sim minute the supervisor ended the shift, or null while it runs.
   - `parseMsg` drops anything malformed and strips extra fields. Anyone holding the code can send.
 - **Transport:** Supabase Realtime broadcast on the channel `heatshield-CODE` when `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set (no tables). Otherwise `BroadcastChannel`, which only links tabs in one browser. The board says which one is in use.
 - **On the board:** the phone's status replaces Ravi K.'s simulated tile (no SIM badge). After 2.5 missed heartbeats (12.5 s) the tile goes stale and the header says "no signal". Acks stay on the board; the worker never sees them.
+- **End shift (20 Nov):** the board's header button reads **Start shift**, then **End shift** (after a confirm) while the shift runs, then **Start new shift**. Ending early freezes the clock and every engine at that minute on the board and the phone, both show "Shift over at HH:MM", and "Needs you" empties. The `/demo` header has the same End shift button, next to Restart.
 - **On the phone:** the delivery line shows the last status the link confirmed. A failed send shows "Not sent, no signal".
 - **Not built:** sign-in, device binding, choosing your name (the phone is always Ravi K.), `/api/status`, and the queue and persistence below.
 

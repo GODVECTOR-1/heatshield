@@ -6,6 +6,11 @@ describe('link messages', () => {
     expect(parseMsg({ type: 'status', workerId: 'W-DEMO', level: 4, simTs: 1, lowBattery: false, name: 'Ravi', hr: 150 }))
       .toEqual({ type: 'status', workerId: 'W-DEMO', level: 4, simTs: 1, lowBattery: false });
   });
+  it('reads an early shift end, and treats a missing or bad one as still running', () => {
+    expect(parseMsg({ type: 'session', wallStart: 5, boardNow: 6, endSim: 7 })).toEqual({ type: 'session', wallStart: 5, boardNow: 6, endSim: 7 });
+    expect(parseMsg({ type: 'session', wallStart: 5, boardNow: 6 })).toEqual({ type: 'session', wallStart: 5, boardNow: 6, endSim: null });
+    expect(parseMsg({ type: 'session', wallStart: 5, boardNow: 6, endSim: 'soon' })).toMatchObject({ endSim: null });
+  });
   it('drops bad levels, unknown workers and junk', () => {
     expect(parseMsg({ type: 'status', workerId: 'W-DEMO', level: 5, simTs: 1, lowBattery: false })).toBeNull();
     expect(parseMsg({ type: 'status', workerId: 'W-DEMO', level: 1.5, simTs: 1, lowBattery: false })).toBeNull();

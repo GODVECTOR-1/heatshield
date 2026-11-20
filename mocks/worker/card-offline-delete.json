@@ -1,0 +1,29 @@
+{
+  "screen": "card",
+  "card": {
+    "level": 0,
+    "phraseKey": "card.l0.phrase",
+    "mainAction": "none",
+    "delivery": {
+      "kind": "queued"
+    },
+    "budgetFraction": 0.9,
+    "reason": null,
+    "activity": "heavy",
+    "activityLocked": false,
+    "canClearL4": false,
+    "restCountdownEnd": null,
+    "banners": [
+      "offline-delete"
+    ],
+    "lateJoinAt": null,
+    "startedLower": false,
+    "medicTel": "+97125550100",
+    "demo": false,
+    "tiers": [
+      0,
+      1
+    ],
+    "offlineReady": true
+  }
+}

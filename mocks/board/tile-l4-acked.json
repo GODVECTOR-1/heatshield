@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-DEMO",
+  "displayName": "Demo Worker",
+  "level": 4,
+  "action": "send-buddy",
+  "lastSeenAt": 1794649992000,
+  "stale": false,
+  "ack": "acked",
+  "ackDueAt": null,
+  "badge": null,
+  "lowBattery": false,
+  "sim": false
+}

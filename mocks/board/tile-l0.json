@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-2B9C",
+  "displayName": "Imran S.",
+  "level": 0,
+  "action": null,
+  "lastSeenAt": 1794649992000,
+  "stale": false,
+  "ack": "none",
+  "ackDueAt": null,
+  "badge": null,
+  "lowBattery": false,
+  "sim": false
+}

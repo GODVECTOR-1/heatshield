@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-6B13",
+  "displayName": "Manoj T.",
+  "level": 2,
+  "action": "allow-shade",
+  "lastSeenAt": 1794649955000,
+  "stale": true,
+  "ack": "overdue",
+  "ackDueAt": null,
+  "badge": "overdue",
+  "lowBattery": false,
+  "sim": false
+}

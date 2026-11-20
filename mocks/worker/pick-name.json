@@ -1,0 +1,21 @@
+{
+  "screen": "pick-name",
+  "crewId": "c1",
+  "roster": [
+    {
+      "workerId": "W-7F3A",
+      "displayName": "Ravi K.",
+      "crewId": "c1"
+    },
+    {
+      "workerId": "W-2B9C",
+      "displayName": "Imran S.",
+      "crewId": "c1"
+    },
+    {
+      "workerId": "W-DEMO",
+      "displayName": "Demo Worker",
+      "crewId": "c1"
+    }
+  ]
+}

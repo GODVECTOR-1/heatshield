@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.env*
+!.env.example
+next-env.d.ts
+*.tsbuildinfo
+public/sw.js
+public/sw.js.map
+public/swe-worker-*.js
+
+# Local tool state
+.gstack/tmp/
+.claude/settings.local.json

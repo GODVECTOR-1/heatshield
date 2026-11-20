@@ -1,0 +1,29 @@
+{
+  "screen": "card",
+  "card": {
+    "level": 1,
+    "phraseKey": "card.l1.phrase",
+    "mainAction": "none",
+    "delivery": {
+      "kind": "not-shared"
+    },
+    "budgetFraction": 0.62,
+    "reason": null,
+    "activity": "heavy",
+    "activityLocked": false,
+    "canClearL4": false,
+    "restCountdownEnd": null,
+    "banners": [
+      "not-shared"
+    ],
+    "lateJoinAt": null,
+    "startedLower": false,
+    "medicTel": "+97125550100",
+    "demo": false,
+    "tiers": [
+      0,
+      1
+    ],
+    "offlineReady": true
+  }
+}

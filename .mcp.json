@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "v0": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "mcp-remote@0.16.6",
+        "https://v0.app/api/mcp"
+      ],
+      "env": {}
+    }
+  }
+}

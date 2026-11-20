@@ -1,0 +1,257 @@
+{
+  "paramsHash": "c69f0c993061",
+  "generatedAt": 1795107682759,
+  "seed": 42,
+  "calibrationSeed": 7,
+  "workers": 200,
+  "days": 10,
+  "weatherWindows": [
+    "2026-05-25..2026-05-29",
+    "2026-10-08..2026-10-12"
+  ],
+  "headline": {
+    "claimKey": "evidence.claim",
+    "unacclimatisedEngineSensitivity": 0.833,
+    "unacclimatisedB1Sensitivity": 0.078
+  },
+  "engine": {
+    "sensitivity": 0.85,
+    "falseAlarmRate": 0.976,
+    "leadTimeMedianMin": 48,
+    "eventDays": 408,
+    "nonEventDays": 1592
+  },
+  "b1": {
+    "sensitivity": 0.113,
+    "falseAlarmRate": 0.28,
+    "leadTimeMedianMin": 37.5,
+    "eventDays": 408,
+    "nonEventDays": 1592,
+    "thresholdC": 31.6
+  },
+  "b0": {
+    "truthEventDays": 408
+  },
+  "fairness": [
+    {
+      "group": "age",
+      "cells": [
+        {
+          "group": "age",
+          "value": "20–29",
+          "engine": {
+            "sensitivity": 0.707,
+            "falseAlarmRate": 0.972
+          },
+          "events": 58,
+          "insufficient": false
+        },
+        {
+          "group": "age",
+          "value": "30–39",
+          "engine": {
+            "sensitivity": 0.87,
+            "falseAlarmRate": 0.976
+          },
+          "events": 77,
+          "insufficient": false
+        },
+        {
+          "group": "age",
+          "value": "40–49",
+          "engine": {
+            "sensitivity": 0.879,
+            "falseAlarmRate": 0.991
+          },
+          "events": 124,
+          "insufficient": false
+        },
+        {
+          "group": "age",
+          "value": "50+",
+          "engine": {
+            "sensitivity": 0.872,
+            "falseAlarmRate": 0.964
+          },
+          "events": 149,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 17.2,
+      "falseAlarmGapPp": 2.7,
+      "pass": false,
+      "fixNote": "To close the gap, add an age input to the limit, which the engine lacks at Tier 0–1, then re-run seed 7 (the engine misses more events for 20–29)."
+    },
+    {
+      "group": "acclimatised",
+      "cells": [
+        {
+          "group": "acclimatised",
+          "value": "unacclimatised",
+          "engine": {
+            "sensitivity": 0.833,
+            "falseAlarmRate": 0.99
+          },
+          "events": 294,
+          "insufficient": false
+        },
+        {
+          "group": "acclimatised",
+          "value": "acclimatised",
+          "engine": {
+            "sensitivity": 0.895,
+            "falseAlarmRate": 0.964
+          },
+          "events": 114,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 6.2,
+      "falseAlarmGapPp": 2.6,
+      "pass": true,
+      "fixNote": null
+    },
+    {
+      "group": "fasting",
+      "cells": [
+        {
+          "group": "fasting",
+          "value": "fasting",
+          "engine": {
+            "sensitivity": 0.84,
+            "falseAlarmRate": 0.972
+          },
+          "events": 150,
+          "insufficient": false
+        },
+        {
+          "group": "fasting",
+          "value": "not fasting",
+          "engine": {
+            "sensitivity": 0.857,
+            "falseAlarmRate": 0.977
+          },
+          "events": 258,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 1.7,
+      "falseAlarmGapPp": 0.5,
+      "pass": true,
+      "fixNote": null
+    },
+    {
+      "group": "ppe",
+      "cells": [
+        {
+          "group": "ppe",
+          "value": "workClothes",
+          "engine": {
+            "sensitivity": 0.734,
+            "falseAlarmRate": 0.948
+          },
+          "events": 64,
+          "insufficient": false
+        },
+        {
+          "group": "ppe",
+          "value": "doubleLayerWoven",
+          "engine": {
+            "sensitivity": 0.887,
+            "falseAlarmRate": 1
+          },
+          "events": 274,
+          "insufficient": false
+        },
+        {
+          "group": "ppe",
+          "value": "polyolefinCoveralls",
+          "engine": {
+            "sensitivity": 0.814,
+            "falseAlarmRate": 1
+          },
+          "events": 70,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 15.3,
+      "falseAlarmGapPp": 5.2,
+      "pass": false,
+      "fixNote": "To close the gap, raise clothingAdjC.workClothes in lib/engine/constants.ts, then re-run seed 7 (the engine misses more events for workClothes)."
+    }
+  ],
+  "robustness": [
+    {
+      "acclimEffect": 0,
+      "fastingEffect": 0,
+      "engineSensitivity": 0.767,
+      "b1Sensitivity": 0.09
+    },
+    {
+      "acclimEffect": 0.25,
+      "fastingEffect": 0.25,
+      "engineSensitivity": 0.807,
+      "b1Sensitivity": 0.088
+    },
+    {
+      "acclimEffect": 0.5,
+      "fastingEffect": 0.5,
+      "engineSensitivity": 0.847,
+      "b1Sensitivity": 0.1
+    },
+    {
+      "acclimEffect": 0.75,
+      "fastingEffect": 0.75,
+      "engineSensitivity": 0.863,
+      "b1Sensitivity": 0.11
+    },
+    {
+      "acclimEffect": 1,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.85,
+      "b1Sensitivity": 0.113
+    },
+    {
+      "acclimEffect": 1.25,
+      "fastingEffect": 1.25,
+      "engineSensitivity": 0.856,
+      "b1Sensitivity": 0.1
+    },
+    {
+      "acclimEffect": 1.5,
+      "fastingEffect": 1.5,
+      "engineSensitivity": 0.848,
+      "b1Sensitivity": 0.089
+    },
+    {
+      "acclimEffect": 1.75,
+      "fastingEffect": 1.75,
+      "engineSensitivity": 0.853,
+      "b1Sensitivity": 0.094
+    },
+    {
+      "acclimEffect": 2,
+      "fastingEffect": 2,
+      "engineSensitivity": 0.847,
+      "b1Sensitivity": 0.088
+    }
+  ],
+  "planner": {
+    "on": {
+      "tasksCompleted": 11350,
+      "level2PlusEvents": 133,
+      "truthEvents": 465
+    },
+    "off": {
+      "tasksCompleted": 8728,
+      "level2PlusEvents": 12058,
+      "truthEvents": 587
+    }
+  },
+  "limitations": [
+    "evidence.limit.truthModel",
+    "evidence.limit.wbgtNotValidated",
+    "evidence.limit.simulatedWorkers",
+    "evidence.limit.twoWindows"
+  ]
+}

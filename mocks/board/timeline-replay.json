@@ -1,0 +1,245 @@
+{
+  "_note": "MOCK for layout only. WBGT is real (docs/analysis/heat-check/hourly.csv, 15 Jul 2026, 06-18 site time); tasks, schedule and predicted levels are invented.",
+  "simNow": 1784095200000,
+  "shiftStart": 1784080800000,
+  "shiftEnd": 1784124000000,
+  "banStart": 1784104200000,
+  "banEnd": 1784113200000,
+  "forecastFetchedAt": null,
+  "wbgt": [
+    {
+      "t": 1784080800000,
+      "sun": 29.2,
+      "shade": 29.15
+    },
+    {
+      "t": 1784084400000,
+      "sun": 29.66,
+      "shade": 29.25
+    },
+    {
+      "t": 1784088000000,
+      "sun": 30.59,
+      "shade": 29.79
+    },
+    {
+      "t": 1784091600000,
+      "sun": 31.11,
+      "shade": 30.12
+    },
+    {
+      "t": 1784095200000,
+      "sun": 31.92,
+      "shade": 30.74
+    },
+    {
+      "t": 1784098800000,
+      "sun": 32.53,
+      "shade": 31.11
+    },
+    {
+      "t": 1784102400000,
+      "sun": 33.39,
+      "shade": 31.53
+    },
+    {
+      "t": 1784106000000,
+      "sun": 33.83,
+      "shade": 32.05
+    },
+    {
+      "t": 1784109600000,
+      "sun": 33.9,
+      "shade": 32.55
+    },
+    {
+      "t": 1784113200000,
+      "sun": 33.49,
+      "shade": 32.47
+    },
+    {
+      "t": 1784116800000,
+      "sun": 33.11,
+      "shade": 32.33
+    },
+    {
+      "t": 1784120400000,
+      "sun": 33.18,
+      "shade": 32.67
+    }
+  ],
+  "tasks": [
+    {
+      "id": "t1",
+      "crewId": "c1",
+      "name": "Pour slab edge forms",
+      "durationMin": 120,
+      "metabolicClass": "heavy",
+      "sun": true,
+      "earliest": 360,
+      "latest": 720
+    },
+    {
+      "id": "t2",
+      "crewId": "c1",
+      "name": "Strip column forms",
+      "durationMin": 90,
+      "metabolicClass": "moderate",
+      "sun": true,
+      "earliest": 360,
+      "latest": 1080
+    },
+    {
+      "id": "t3",
+      "crewId": "c1",
+      "name": "Sort and oil panels",
+      "durationMin": 120,
+      "metabolicClass": "light",
+      "sun": false,
+      "earliest": 360,
+      "latest": 1080
+    },
+    {
+      "id": "t4",
+      "crewId": "c1",
+      "name": "Carry rebar bundles",
+      "durationMin": 60,
+      "metabolicClass": "veryHeavy",
+      "sun": true,
+      "earliest": 600,
+      "latest": 1080
+    }
+  ],
+  "schedule": [
+    {
+      "kind": "task",
+      "start": 1784080800000,
+      "end": 1784088000000,
+      "taskId": "t1",
+      "activity": "heavy",
+      "sun": true
+    },
+    {
+      "kind": "rest",
+      "start": 1784088000000,
+      "end": 1784088900000,
+      "reason": "planned"
+    },
+    {
+      "kind": "task",
+      "start": 1784088900000,
+      "end": 1784094300000,
+      "taskId": "t2",
+      "activity": "moderate",
+      "sun": true
+    },
+    {
+      "kind": "rest",
+      "start": 1784094300000,
+      "end": 1784095200000,
+      "reason": "planned"
+    },
+    {
+      "kind": "task",
+      "start": 1784095200000,
+      "end": 1784102400000,
+      "taskId": "t3",
+      "activity": "light",
+      "sun": false
+    },
+    {
+      "kind": "rest",
+      "start": 1784102400000,
+      "end": 1784104200000,
+      "reason": "planned"
+    },
+    {
+      "kind": "rest",
+      "start": 1784104200000,
+      "end": 1784113200000,
+      "reason": "midday-ban"
+    },
+    {
+      "kind": "task",
+      "start": 1784113200000,
+      "end": 1784116800000,
+      "taskId": "t3",
+      "activity": "light",
+      "sun": false
+    },
+    {
+      "kind": "rest",
+      "start": 1784116800000,
+      "end": 1784117700000,
+      "reason": "planned"
+    }
+  ],
+  "unscheduled": [
+    {
+      "taskId": "t4",
+      "reason": "too-hot"
+    }
+  ],
+  "predicted": [
+    {
+      "t": 1784080800000,
+      "level": 0
+    },
+    {
+      "t": 1784086200000,
+      "level": 1
+    },
+    {
+      "t": 1784088900000,
+      "level": 0
+    },
+    {
+      "t": 1784092500000,
+      "level": 1
+    },
+    {
+      "t": 1784094300000,
+      "level": 2
+    },
+    {
+      "t": 1784096100000,
+      "level": 1
+    },
+    {
+      "t": 1784100600000,
+      "level": 1
+    },
+    {
+      "t": 1784102400000,
+      "level": 2
+    },
+    {
+      "t": 1784106000000,
+      "level": 1
+    },
+    {
+      "t": 1784113200000,
+      "level": 1
+    },
+    {
+      "t": 1784116800000,
+      "level": 2
+    },
+    {
+      "t": 1784118600000,
+      "level": 1
+    }
+  ],
+  "plannerCompare": {
+    "on": {
+      "tasksCompleted": 3,
+      "level2PlusEvents": 4,
+      "truthEvents": 0
+    },
+    "off": {
+      "tasksCompleted": 4,
+      "level2PlusEvents": 11,
+      "truthEvents": 2
+    }
+  }
+}

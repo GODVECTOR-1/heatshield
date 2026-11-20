@@ -1,0 +1,25 @@
+{
+  "sessionId": "3f1c2a9e-6b7d-4e21-9a55-0c1d2e3f4a5b",
+  "scenario": "replay-2026-07-15",
+  "multiplier": 240,
+  "offlineSince": null,
+  "sessionInvalid": false,
+  "needsYou": [],
+  "grid": [
+    {
+      "kind": "no-data",
+      "workerId": "W-DEMO",
+      "displayName": "Demo Worker"
+    },
+    {
+      "kind": "no-data",
+      "workerId": "W-2B9C",
+      "displayName": "Imran S."
+    },
+    {
+      "kind": "no-data",
+      "workerId": "W-7F3A",
+      "displayName": "Ravi K."
+    }
+  ]
+}

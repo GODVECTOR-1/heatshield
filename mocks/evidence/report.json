@@ -1,0 +1,257 @@
+{
+  "paramsHash": "MOCK",
+  "generatedAt": 1795392000000,
+  "seed": 42,
+  "calibrationSeed": 7,
+  "workers": 200,
+  "days": 10,
+  "weatherWindows": [
+    "2026-05-25..2026-05-29",
+    "2026-10-08..2026-10-12"
+  ],
+  "headline": {
+    "claimKey": "evidence.claim",
+    "unacclimatisedEngineSensitivity": 0.88,
+    "unacclimatisedB1Sensitivity": 0.58
+  },
+  "engine": {
+    "sensitivity": 0.84,
+    "falseAlarmRate": 0.13,
+    "leadTimeMedianMin": 38,
+    "eventDays": 209,
+    "nonEventDays": 1791
+  },
+  "b1": {
+    "sensitivity": 0.66,
+    "falseAlarmRate": 0.19,
+    "leadTimeMedianMin": 21,
+    "eventDays": 209,
+    "nonEventDays": 1791,
+    "thresholdC": 29.4
+  },
+  "b0": {
+    "truthEventDays": 209
+  },
+  "fairness": [
+    {
+      "group": "age",
+      "cells": [
+        {
+          "group": "age",
+          "value": "20–29",
+          "engine": {
+            "sensitivity": 0.86,
+            "falseAlarmRate": 0.12
+          },
+          "events": 61,
+          "insufficient": false
+        },
+        {
+          "group": "age",
+          "value": "30–39",
+          "engine": {
+            "sensitivity": 0.84,
+            "falseAlarmRate": 0.13
+          },
+          "events": 74,
+          "insufficient": false
+        },
+        {
+          "group": "age",
+          "value": "40–49",
+          "engine": {
+            "sensitivity": 0.81,
+            "falseAlarmRate": 0.15
+          },
+          "events": 52,
+          "insufficient": false
+        },
+        {
+          "group": "age",
+          "value": "50+",
+          "engine": {
+            "sensitivity": 0.78,
+            "falseAlarmRate": 0.17
+          },
+          "events": 22,
+          "insufficient": true
+        }
+      ],
+      "sensitivityGapPp": 8,
+      "falseAlarmGapPp": 5,
+      "pass": true,
+      "fixNote": null
+    },
+    {
+      "group": "acclimatised",
+      "cells": [
+        {
+          "group": "acclimatised",
+          "value": "unacclimatised",
+          "engine": {
+            "sensitivity": 0.88,
+            "falseAlarmRate": 0.16
+          },
+          "events": 97,
+          "insufficient": false
+        },
+        {
+          "group": "acclimatised",
+          "value": "acclimatised",
+          "engine": {
+            "sensitivity": 0.8,
+            "falseAlarmRate": 0.11
+          },
+          "events": 112,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 8,
+      "falseAlarmGapPp": 5,
+      "pass": true,
+      "fixNote": null
+    },
+    {
+      "group": "fasting",
+      "cells": [
+        {
+          "group": "fasting",
+          "value": "fasting",
+          "engine": {
+            "sensitivity": 0.83,
+            "falseAlarmRate": 0.14
+          },
+          "events": 44,
+          "insufficient": false
+        },
+        {
+          "group": "fasting",
+          "value": "not fasting",
+          "engine": {
+            "sensitivity": 0.85,
+            "falseAlarmRate": 0.13
+          },
+          "events": 165,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 2,
+      "falseAlarmGapPp": 1,
+      "pass": true,
+      "fixNote": null
+    },
+    {
+      "group": "ppe",
+      "cells": [
+        {
+          "group": "ppe",
+          "value": "workClothes",
+          "engine": {
+            "sensitivity": 0.86,
+            "falseAlarmRate": 0.12
+          },
+          "events": 88,
+          "insufficient": false
+        },
+        {
+          "group": "ppe",
+          "value": "doubleLayerWoven",
+          "engine": {
+            "sensitivity": 0.72,
+            "falseAlarmRate": 0.14
+          },
+          "events": 41,
+          "insufficient": false
+        },
+        {
+          "group": "ppe",
+          "value": "polyolefinCoveralls",
+          "engine": {
+            "sensitivity": 0.83,
+            "falseAlarmRate": 0.13
+          },
+          "events": 80,
+          "insufficient": false
+        }
+      ],
+      "sensitivityGapPp": 14,
+      "falseAlarmGapPp": 2,
+      "pass": false,
+      "fixNote": "MOCK: raise the doubleLayerWoven clothing adjustment from +3 to +4 °C and re-run seed 7."
+    }
+  ],
+  "robustness": [
+    {
+      "acclimEffect": 0,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.8,
+      "b1Sensitivity": 0.78
+    },
+    {
+      "acclimEffect": 0.25,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.81,
+      "b1Sensitivity": 0.73
+    },
+    {
+      "acclimEffect": 0.5,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.83,
+      "b1Sensitivity": 0.68
+    },
+    {
+      "acclimEffect": 0.75,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.84,
+      "b1Sensitivity": 0.63
+    },
+    {
+      "acclimEffect": 1,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.85,
+      "b1Sensitivity": 0.58
+    },
+    {
+      "acclimEffect": 1.25,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.86,
+      "b1Sensitivity": 0.53
+    },
+    {
+      "acclimEffect": 1.5,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.88,
+      "b1Sensitivity": 0.48
+    },
+    {
+      "acclimEffect": 1.75,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.89,
+      "b1Sensitivity": 0.43
+    },
+    {
+      "acclimEffect": 2,
+      "fastingEffect": 1,
+      "engineSensitivity": 0.9,
+      "b1Sensitivity": 0.38
+    }
+  ],
+  "planner": {
+    "on": {
+      "tasksCompleted": 812,
+      "level2PlusEvents": 140,
+      "truthEvents": 31
+    },
+    "off": {
+      "tasksCompleted": 860,
+      "level2PlusEvents": 402,
+      "truthEvents": 96
+    }
+  },
+  "limitations": [
+    "evidence.limit.truthModel",
+    "evidence.limit.wbgtNotValidated",
+    "evidence.limit.simulatedWorkers",
+    "evidence.limit.twoWindows"
+  ]
+}

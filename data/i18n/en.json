@@ -1,0 +1,17 @@
+{
+  "banner.replay": "REPLAY · 15 Jul 2026 · 240×", "banner.not-shared": "Not shared (you chose this)",
+  "banner.low-battery": "Battery low, stay with your buddy", "banner.offline-delete": "Your status expires within 24 h",
+  "card.joinedAt": "Joined {time}", "card.startedLower": "Yesterday was hard: starting lower", "card.stop": "STOP",
+  "card.l0.phrase": "Keep working. Drink water.", "card.l1.phrase": "Drink now. Slow down.",
+  "card.l2.phrase": "Go to shade. Rest 15 min.", "card.l3.phrase": "Stop heavy work. Light task only.", "card.l4.phrase": "Stop work. Get help now.",
+  "action.inShade": "I'm in the shade", "action.restMinutes": "{minutes} min rest left", "action.lightTask": "Switched to light task",
+  "action.callMedic": "Call site medic", "action.call998": "Call 998", "action.okBuddyChecked": "I'm OK, buddy checked", "action.unwell": "I FEEL UNWELL",
+  "delivery.sent": "Supervisor sees: level {level} · {minutes} min ago", "delivery.queued": "Not sent, no signal", "delivery.notShared": "Not shared (you chose this)",
+  "reason.hr-high": "heart rate high", "reason.after-unwell": "after unwell", "reason.dark-urine": "dark urine",
+  "reason.watch-lost": "watch lost: playing safe", "reason.no-forecast": "no forecast: worst case", "reason.recovering": "recovering",
+  "activity.rest": "Rest", "activity.light": "Light", "activity.moderate": "Moderate", "activity.heavy": "Heavy",
+  "a11y.menu": "Menu", "a11y.level": "Alert level", "a11y.delivery": "What your supervisor sees", "a11y.budget": "Heat budget", "a11y.activity": "What you are doing",
+  "reading.wbgt": "WBGT {value}°", "reading.hr": "Heart rate {value}",
+  "demo.wouldDial": "Demo: would dial {who}",
+  "join.title": "Join your crew", "join.scan": "Point your phone camera at the QR code on your supervisor's screen.", "join.typeCode": "Or type the crew code", "join.go": "Join", "join.bad": "That code doesn't look right. It has 6 letters and numbers.", "join.demo": "No supervisor here? Watch the demo", "join.waiting": "You're in. Waiting for your supervisor to start the shift.", "join.codeIs": "Crew code {code}", "join.over": "Shift over at 18:00"
+}

@@ -1,0 +1,31 @@
+{
+  "screen": "card",
+  "card": {
+    "level": 2,
+    "phraseKey": "card.l2.phrase",
+    "mainAction": "in-shade",
+    "delivery": {
+      "kind": "sent",
+      "level": 2,
+      "at": 1784095080000
+    },
+    "budgetFraction": 0.85,
+    "reason": "after-unwell",
+    "activity": "heavy",
+    "activityLocked": false,
+    "canClearL4": false,
+    "restCountdownEnd": null,
+    "banners": [
+      "replay"
+    ],
+    "lateJoinAt": null,
+    "startedLower": false,
+    "medicTel": "+97125550100",
+    "demo": true,
+    "tiers": [
+      0,
+      1
+    ],
+    "offlineReady": true
+  }
+}

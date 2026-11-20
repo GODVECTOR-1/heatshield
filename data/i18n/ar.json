@@ -1,0 +1,17 @@
+{
+  "banner.replay": "إعادة · 15 يوليو 2026 · ×240", "banner.not-shared": "غير مُشارَك (باختيارك)",
+  "banner.low-battery": "البطارية ضعيفة، ابقَ مع زميلك", "banner.offline-delete": "تنتهي حالتك خلال 24 ساعة",
+  "card.joinedAt": "انضممت {time}", "card.startedLower": "أمس كان صعبًا: تبدأ بمستوى أقل", "card.stop": "توقّف",
+  "card.l0.phrase": "واصل العمل. اشرب الماء.", "card.l1.phrase": "اشرب الآن. خفّف السرعة.",
+  "card.l2.phrase": "اذهب إلى الظل. استرح 15 دقيقة.", "card.l3.phrase": "أوقف العمل الشاق. عمل خفيف فقط.", "card.l4.phrase": "أوقف العمل. اطلب المساعدة الآن.",
+  "action.inShade": "أنا في الظل", "action.restMinutes": "بقي {minutes} د من الراحة", "action.lightTask": "انتقلت إلى عمل خفيف",
+  "action.callMedic": "اتصل بمسعف الموقع", "action.call998": "اتصل بـ 998", "action.okBuddyChecked": "أنا بخير، زميلي تأكّد", "action.unwell": "أشعر بتوعّك",
+  "delivery.sent": "المشرف يرى: المستوى {level} · منذ {minutes} د", "delivery.queued": "لم يُرسَل، لا توجد إشارة", "delivery.notShared": "غير مُشارَك (باختيارك)",
+  "reason.hr-high": "نبض القلب مرتفع", "reason.after-unwell": "بعد التوعّك", "reason.dark-urine": "بول داكن",
+  "reason.watch-lost": "انقطعت الساعة: نحتاط", "reason.no-forecast": "لا توجد توقعات: أسوأ حالة", "reason.recovering": "تتعافى",
+  "activity.rest": "راحة", "activity.light": "خفيف", "activity.moderate": "متوسط", "activity.heavy": "شاق",
+  "a11y.menu": "القائمة", "a11y.level": "مستوى التنبيه", "a11y.delivery": "ما يراه المشرف", "a11y.budget": "رصيد الحرارة", "a11y.activity": "ماذا تفعل الآن",
+  "reading.wbgt": "مؤشر الحرارة {value}°", "reading.hr": "النبض {value}",
+  "demo.wouldDial": "عرض تجريبي: سيتم الاتصال بـ {who}",
+  "join.title": "انضم إلى فريقك", "join.scan": "وجّه كاميرا هاتفك إلى رمز QR على شاشة المشرف.", "join.typeCode": "أو اكتب رمز الفريق", "join.go": "انضمام", "join.bad": "هذا الرمز غير صحيح. يتكوّن من 6 حروف وأرقام.", "join.demo": "لا يوجد مشرف؟ شاهد العرض التجريبي", "join.waiting": "تم انضمامك. بانتظار أن يبدأ المشرف الوردية.", "join.codeIs": "رمز الفريق {code}", "join.over": "انتهت الوردية الساعة 18:00"
+}

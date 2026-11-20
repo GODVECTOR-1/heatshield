@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-7F3A",
+  "displayName": "Ravi K.",
+  "level": 2,
+  "action": "allow-shade",
+  "lastSeenAt": 1794649992000,
+  "stale": false,
+  "ack": "due",
+  "ackDueAt": 1794650022000,
+  "badge": null,
+  "lowBattery": false,
+  "sim": false
+}

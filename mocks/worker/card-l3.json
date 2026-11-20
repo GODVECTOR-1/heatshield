@@ -1,0 +1,31 @@
+{
+  "screen": "card",
+  "card": {
+    "level": 3,
+    "phraseKey": "card.l3.phrase",
+    "mainAction": "light-task",
+    "delivery": {
+      "kind": "sent",
+      "level": 3,
+      "at": 1784095080000
+    },
+    "budgetFraction": 0.22,
+    "reason": null,
+    "activity": "heavy",
+    "activityLocked": false,
+    "canClearL4": false,
+    "restCountdownEnd": null,
+    "banners": [
+      "replay"
+    ],
+    "lateJoinAt": null,
+    "startedLower": false,
+    "medicTel": "+97125550100",
+    "demo": true,
+    "tiers": [
+      0,
+      1
+    ],
+    "offlineReady": true
+  }
+}

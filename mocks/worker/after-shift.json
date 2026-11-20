@@ -1,0 +1,14 @@
+{
+  "screen": "after-shift",
+  "summary": {
+    "highestLevel": 3,
+    "minutesAtLevel": {
+      "0": 310,
+      "1": 190,
+      "2": 95,
+      "3": 35,
+      "4": 0
+    },
+    "restMinutes": 140
+  }
+}

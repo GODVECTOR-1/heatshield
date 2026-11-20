@@ -1,0 +1,29 @@
+{
+  "screen": "card",
+  "card": {
+    "level": 1,
+    "phraseKey": "card.l1.phrase",
+    "mainAction": "none",
+    "delivery": {
+      "kind": "sent",
+      "level": 1,
+      "at": 1784095080000
+    },
+    "budgetFraction": 0.62,
+    "reason": null,
+    "activity": "heavy",
+    "activityLocked": false,
+    "canClearL4": false,
+    "restCountdownEnd": null,
+    "banners": [],
+    "lateJoinAt": 1784090400000,
+    "startedLower": true,
+    "medicTel": "+97125550100",
+    "demo": false,
+    "tiers": [
+      0,
+      1
+    ],
+    "offlineReady": true
+  }
+}

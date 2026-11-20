@@ -1,0 +1,17 @@
+{
+  "screen": "pick-crew",
+  "crews": [
+    {
+      "id": "c1",
+      "name": "Crew A · Formwork",
+      "shiftStart": 360,
+      "shiftEnd": 1080
+    },
+    {
+      "id": "c2",
+      "name": "Crew B · Rebar",
+      "shiftStart": 360,
+      "shiftEnd": 1080
+    }
+  ]
+}

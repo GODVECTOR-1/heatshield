@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-4D90",
+  "displayName": "Rajesh V.",
+  "level": 1,
+  "action": null,
+  "lastSeenAt": 1794649992000,
+  "stale": false,
+  "ack": "none",
+  "ackDueAt": null,
+  "badge": "battery",
+  "lowBattery": true,
+  "sim": false
+}

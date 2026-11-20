@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-3C2E",
+  "displayName": "Abdul R.",
+  "level": 3,
+  "action": "move-to-light",
+  "lastSeenAt": 1794649992000,
+  "stale": false,
+  "ack": "overdue",
+  "ackDueAt": null,
+  "badge": "overdue",
+  "lowBattery": false,
+  "sim": false
+}

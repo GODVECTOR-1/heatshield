@@ -1,0 +1,14 @@
+{
+  "kind": "status",
+  "workerId": "W-1F08",
+  "displayName": "Bilal A.",
+  "level": 0,
+  "action": null,
+  "lastSeenAt": 1794649955000,
+  "stale": true,
+  "ack": "none",
+  "ackDueAt": null,
+  "badge": "stale",
+  "lowBattery": false,
+  "sim": false
+}
